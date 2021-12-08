@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\ConfigController;
+use App\Http\Controllers\MenuController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+Route::prefix('V2')->group(function () {
+    Route::get('basic_setting', [ConfigController::class, 'setting'])->name('setting');
+    Route::get('menu_type', [MenuController::class, 'index'])->name('menu');
 });
