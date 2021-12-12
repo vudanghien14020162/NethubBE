@@ -4,6 +4,7 @@ use App\Http\Controllers\ConfigController;
 use App\Http\Controllers\GenreController;
 use App\Http\Controllers\HomeSliderController;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\MovieController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,5 +27,6 @@ Route::prefix('V2')->group(function () {
     Route::get('basic_setting', [ConfigController::class, 'setting'])->name('setting');
     Route::get('menu_type', [MenuController::class, 'index'])->name('menu');
     Route::get('get-sliders-by-menu/{menu_id}', [HomeSliderController::class, 'index'])->name('get-sliders-by-menu');
-    Route::get('list-genre-by-menu/{menu_id}', [GenreController::class, 'index'])->name('get-list-genre-by-menu');
+    Route::get('get-genre-by-menu/{menu_id}', [GenreController::class, 'index'])->name('get-list-genre-by-menu');
+    Route::get('get-data-by-genre/{menu_id}', [MovieController::class, 'index'])->name('get-data-by-genre');
 });

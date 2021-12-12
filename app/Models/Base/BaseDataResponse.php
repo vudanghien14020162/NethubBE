@@ -117,4 +117,36 @@ class BaseDataResponse
         return $data;
     }
 
+    public static function baseEpg($epg, $options = []){
+        if(is_null($epg) || empty($epg)){
+            return false;
+        }
+        if(is_array($epg)) $epg = (object)$epg;
+        $data = [
+            'id'                => $epg->id,
+            'channels_id'       => $epg->channels_id,
+            'channel_name'      => $epg->channel_name,
+            'title'             => $epg->title,
+            'program_start'     => $epg->program_start,
+            'program_end'       => $epg->program_end,
+            'thumbnail'         => $epg->image_event,
+            'poster'            => $epg->image_event
+        ];
+        return $data;
+    }
+
+    public static function baseAds($ad, $option = []){
+        if(is_null($ad) || empty($ad)){
+            return false;
+        }
+        if(is_array($ad)) $ad = (object) $ad;
+        $data = [
+            'id' => $ad->id,
+            'ad_image_tv' => $ad->image,
+            'ad_image_mobile' => $ad->image,
+            'ad_target' => null
+        ];
+        return !empty($data) ? $data : null;
+    }
+
 }

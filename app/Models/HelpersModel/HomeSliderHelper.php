@@ -15,14 +15,15 @@ class HomeSliderHelper extends BaseHelper
         $key = ConstResponse::KEY_SLIDER_BY_MENU . $menu_id .'_offset_' . $offset . '_limit_' . $limit;
         $datas = [];
         $datas = $cache->getData($key);
-        if(count($datas) == 0){
+        if(is_null($datas) || empty($datas)){
             $sliders = HomeSlider::query()
+                ->where('menu_id', $menu_id)
                 ->where('status', HomeSlider::STATUS_ACTIVE)
                 ->where('deleted', HomeSlider::NOT_DELETED)
-                ->where('menu_id', $menu_id)
-                ->orderBy('position', 'desc')
-                ->limit($limit)
+                ->inRandomOrder()
                 ->offset($offset)
+                ->limit($limit)
+                ->orderBy('position', 'desc')
                 ->get();
             if(count($sliders) > 0){
                 foreach ($sliders as $slider){
