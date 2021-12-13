@@ -53,6 +53,9 @@ class GenreHelper extends BaseHelper
             case Genre::GENRE_LIVE_TO_VOD:
                 $events = EpgDataHelper::getLiveToVod($offset, $limit);
                 break;
+            default:
+                $movies = MovieHelper::getMovieByGenre($genre, $offset, $limit);
+                break;
         }
         $object = new \stdClass();
         $object->events = $events;

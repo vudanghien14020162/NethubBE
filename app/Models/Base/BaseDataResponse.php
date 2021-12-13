@@ -149,4 +149,27 @@ class BaseDataResponse
         return !empty($data) ? $data : null;
     }
 
+    public static function baseMovie($movie, $options = []){
+        if(is_null($movie) || empty($movie)){
+            return false;
+        }
+        if(is_array($movie)) $movie = (object) $movie;
+        $data = [
+            'id' => isset($movie->id) ? $movie->id : '',
+            'title' => isset($movie->title) ? $movie->title : '',
+            'title_alias' => isset($movie->title_alias) ? $movie->title_alias : '',
+            'thumbnail' => isset($movie->thumbnail) ? $movie->thumbnail : '',
+            'poster' => isset($movie->poster) ? $movie->poster : '',
+            'live' => isset($movie->live) ? $movie->live : '',
+            'channel_number' => isset($movie->channel_number) ? $movie->channel_number : '',
+            'check_epg' => isset($movie->check_epg) ? $movie->check_epg : '',
+            'watching_percent' => isset($movie->watching_percent) ? $movie->watching_percent : 0,
+            'finish_watching' => isset($movie->finish_watching) ? $movie->finish_watching : 0,
+            'link_detail' => isset($movie->link_detail) ? $movie->link_detail : 0,
+            'series' => isset($movie->series) ? $movie->series : 0,
+        ];
+        return $data;
+
+    }
+
 }

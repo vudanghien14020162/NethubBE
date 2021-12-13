@@ -49,8 +49,28 @@ class EpgDataHelper extends BaseHelper
         return $datas;
     }
 
-    public static function getLiveToVod(){
-
+    public static function getLiveToVod($offset, $limit){
+        $cache = self::getCache();
+        $key_cache = ConstResponse::KEY_LIVE_TO_VOD_BY_GENRE_ID . '_offset_' . $offset . '_limit_' . $limit;
+        $date = date("Y-m-d H:i:s");
+        $datas = [];
+        $datas = $cache->getData($key_cache);
+        if(is_null($datas) || empty($datas)){
+            $epg_datas = EpgData::query()
+                ->where('live_to_vod', Genre::STATUS_ACTIVE)
+                ->where('program_end', ">=", $date)
+                ->orderBy('program_start', 'asc')
+                ->offset($offset)
+                ->limit($limit)
+                ->get();
+            if(count($epg_datas) > 0){
+                foreach ($epg_datas as $epg_data){
+                    $epg = BaseDataResponse::baseEpg($epg_data);
+                    $datas[] = $epg;
+                }
+            }
+        }
+        return $datas;
     }
 
 }

@@ -18,5 +18,7 @@ class ConstResponse
     const KEY_GET_GENRE_BY_MENU_ID                      = 'get_genre_by_menu_id:';
     const KEY_GET_DATA_BY_GENRE_ID                      = 'get_data_by_genre_id:';
     const KEY_EPG_BY_GENRE_ID                           = 'get_epg_by_genre_id:';
+    const KEY_LIVE_TO_VOD_BY_GENRE_ID                   = 'get_live_to_vod_by_genre_id:';
     const KEY_ADS_BY_GENRE_ID                           = 'get_ads_by_genre_id:';
+    const KEY_GET_MOVIE_BY_GENRE_ID                     = 'get_movie_by_genre_id:';
 }
