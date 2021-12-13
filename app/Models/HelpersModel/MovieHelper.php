@@ -38,9 +38,12 @@ class MovieHelper extends BaseHelper
             if(count($movies) > 0){
                 foreach ($movies as $movie){
                     $movie = BaseDataResponse::baseMovie($movie);
+                    $datas[] = $movie;
                 }
+                $cache->createData($key_cache, $datas);
             }
         }
+        return $datas;
     }
 
 
