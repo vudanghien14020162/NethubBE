@@ -15,9 +15,9 @@ class BaseResponse
         return response()->json($datas);
     }
 
-    public static function responseRequestJsonError($data, $message = 'error'){
+    public static function responseRequestJsonError($status_code = Response::HTTP_BAD_REQUEST, $data, $message = 'error'){
         $datas = [
-            'status_code'    => Response::HTTP_BAD_REQUEST,
+            'status_code'    => $status_code,
             'message'       => $message,
             'data'          => $data
         ];

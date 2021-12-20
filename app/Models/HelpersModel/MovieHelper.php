@@ -21,6 +21,11 @@ class MovieHelper extends BaseHelper
         return $data;
     }
 
+    public static function getMovieId($id){
+        $movie = Movie::find($id);
+        return $movie;
+    }
+
     public static function getMovieByGenre($genre, $offset, $limit){
         $cache = self::getCache();
         $key_cache = ConstResponse::KEY_GET_MOVIE_BY_GENRE_ID . $genre->id. '_offset_' . $offset . '_limit_' . $limit;
@@ -44,6 +49,11 @@ class MovieHelper extends BaseHelper
             }
         }
         return $datas;
+    }
+
+    public static function movieLinkById($movie_id){
+        $movie = self::getMovieById($movie_id);
+        return $movie;
     }
 
 

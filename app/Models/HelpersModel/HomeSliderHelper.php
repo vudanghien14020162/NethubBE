@@ -14,5 +14,6 @@ class HomeSliderHelper extends BaseHelper
             ->where('status', HomeSlider::STATUS_ACTIVE)
             ->where('deleted', HomeSlider::NOT_DELETED)
             ->get();
+        return $sliders;
     }
 }

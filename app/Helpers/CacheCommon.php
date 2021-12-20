@@ -16,7 +16,7 @@ class CacheCommon
     }
     public function getData($key){
         $key = ConstResponse::KEY_CACHE_PATH . $key;
-        $data = Cache::get($key);
+        $data = Cache::get($key, 0);
         return $data;
     }
     public function createData($key, $data){
