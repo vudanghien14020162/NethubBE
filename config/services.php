@@ -30,4 +30,22 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'bsms' => [
+        'host' => 'http:://cskh.avg.vn',
+        'account'=>'mpadministrator',
+        'password' => 'abc123',
+        'organisation' => 'AVG'
+    ],
+
+    'bsms-x' => [
+        'host' => 'http:://cskh.avg.vn',
+        'account' => 'pay_smartpay',
+        'password' => 'smart@123',
+        'partner' => 'SMARTPAY'
+    ],
+
+    'sms' => [
+        'host' => 'http:://cskh.avg.vn'
+    ]
+
 ];

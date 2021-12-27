@@ -19,16 +19,4 @@ class OtpSms extends BaseModel
         'otp_code',
         'expired_at',
     ];
-    public static function createOtp($phone_number, $expire_at){
-        $cache                      = SingletonCache::instance();
-        $key                        = ConstResponse::KEY_GET_OTP_BY_USER . $phone_number;
-        $check_otp_count            = $cache->getData($key);
-        if($check_otp_count < ConstResponse::CCU_MAX_OTP){
-            $check_otp_count += 1;
-            if(WhiteListUserHelper::isDefaultOtp($phone_number)){
-                $check_otp_count = 1;
-            }
-        }
-//        return $data;
-    }
 }

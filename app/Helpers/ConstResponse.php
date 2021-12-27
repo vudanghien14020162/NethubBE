@@ -25,4 +25,8 @@ class ConstResponse
     const KEY_GET_OTP_BY_USER                           = 'get_otp_by_user:';
     const EXPIRE_TIME_OTP                               = 5;
     const CCU_MAX_OTP                                   = 3;
+
+    public static $message_sms_otp_nethub               = " la ma OTP xac thuc tai khoan NETHub cua Quy Khach";
+    public static $message_sms_password                 = " la mat khau mac dinh dang nhap NETHub cua Quy khach";
+    public static $error_send_otp_number_max            = 9;
 }
