@@ -56,6 +56,10 @@ class MovieHelper extends BaseHelper
         return $movie;
     }
 
+    public static function getMovieWatching($user_id, $page, $limit){
+        $list = WatchHistoryHelper::userWatchingMovies($user_id, $page, $limit);
+
+    }
 
 
 }

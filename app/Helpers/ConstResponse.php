@@ -23,6 +23,7 @@ class ConstResponse
     const KEY_GET_MOVIE_BY_GENRE_ID                     = 'get_movie_by_genre_id:';
     const KEY_GET_USER_BY_ID                            = 'get_user_by_id:';
     const KEY_GET_OTP_BY_USER                           = 'get_otp_by_user:';
+    const KEY_GET_FIRST_GENRE                           = 'get_first_genre:';
     const EXPIRE_TIME_OTP                               = 5;
     const CCU_MAX_OTP                                   = 3;
 

@@ -2,10 +2,12 @@
 
 
 namespace App\Models\HelpersModel;
+use App\Helpers\ConstResponse;
 use App\Models\Actor;
 use App\Models\Director;
 use App\Models\Movie;
 use App\Models\RelationActorMovie;
+use App\Models\RelationMovieGenre;
 
 class RelationHelper extends BaseHelper
 {
@@ -29,4 +31,14 @@ class RelationHelper extends BaseHelper
         return $data;
     }
 
+    public static function getFirstGenre($movie_id){
+        $cache = self::getCache();
+        $key = ConstResponse::KEY_GET_FIRST_GENRE . $movie_id;
+        $data = $cache->getData($key);
+        if(empty($data) || is_null($data)){
+            $data = RelationMovieGenre::query()->where('movie_id', $movie_id)->first();
+            $cache->createData($key, $data);
+        }
+        return $data;
+    }
 }

@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use App\Helpers\BaseResponse;
 use App\Models\HelpersModel\GenreHelper;
 use App\Models\HelpersModel\MovieHelper;
+use App\Models\HelpersModel\RelationHelper;
 use App\Models\Movie;
 use Illuminate\Http\Request;
 
@@ -36,6 +37,20 @@ class MovieController extends Controller
 
     public function allMovie(Request $request, $movie_id){
         $msg = "Thành công.";
+    }
+
+    public function getRecommend(Request $request, $movie_id){
+        $datas = new \stdClass();
+        $firstGenre = RelationHelper::getFirstGenre($movie_id);
+        if($firstGenre){
+            $genre_id = isset($firstGenre->genre_id) ? $firstGenre->genre_id : 0;
+            $genre = GenreHelper::getGenreById($genre_id);
+            if($genre){
+                $datas = GenreHelper::getDataByGenreId($genre, 16, 0);
+            }
+        }
+        $msg = "Thành công.";
+        return BaseResponse::responseRequestJsonSuccess($datas, $msg);
     }
 
 }

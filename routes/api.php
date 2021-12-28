@@ -39,4 +39,5 @@ Route::prefix('V2')->group(function () {
     Route::get('all-channel', [MovieController::class, 'allMovie'])->name('get-all-movie');
     Route::get('list-notification', [NotificationController::class, 'listNotification'])->name('list-notification');
     Route::get('count-not-view-notification', [NotificationController::class, 'countNotification'])->name('count-notification');
+    Route::get('getRecommend/{movie_id}', [MovieController::class, 'getRecommend'])->name('get-recommend');
 });

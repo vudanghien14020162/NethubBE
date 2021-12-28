@@ -5,6 +5,8 @@ namespace App\Models\HelpersModel;
 
 
 use App\Helpers\ConstResponse;
+use App\Helpers\TokenValidator;
+use App\Http\Controllers\MovieController;
 use App\Models\Genre;
 use App\Models\RelationMenuGenre;
 
@@ -54,7 +56,10 @@ class GenreHelper extends BaseHelper
                 $events = EpgDataHelper::getLiveToVod($offset, $limit);
                 break;
             case Genre::GENRE_TYPE_WATCHING:
-
+                $user_id = TokenValidator::retrieveUserId(request());
+                if ($user_id != null && isset($user_id)) {
+                    $movies = MovieHelper::getMovieWatching($user_id, $per_page, $offset);
+                }
             default:
                 $movies = MovieHelper::getMovieByGenre($genre, $offset, $limit);
                 break;
