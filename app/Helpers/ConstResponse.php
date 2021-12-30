@@ -8,6 +8,7 @@ class ConstResponse
 {
     const SUCCESS                                       = 200;
     const ERROR                                         = 400;
+    const ERROR_LOGIN                                   = 403;
     const KEY_CACHE_TIME                                = 5 * 60 * 60;
     const KEY_CACHE_PATH                                = 'COMMON_CACHE:';
     const KEY_GET_CONFIG                                = 'get_config';
@@ -30,4 +31,7 @@ class ConstResponse
     public static $message_sms_otp_nethub               = " la ma OTP xac thuc tai khoan NETHub cua Quy Khach";
     public static $message_sms_password                 = " la mat khau mac dinh dang nhap NETHub cua Quy khach";
     public static $error_send_otp_number_max            = 9;
+    public static $watched_percent                      = 95;
+    public static $message_login                        = "Bạn cần đăng nhập để sử dụng chức năng này.";
+    public static $message_blocked_user                 = "Tài khoản này bị khóa do vi phạm chính sách bản quyền NETHub";
 }

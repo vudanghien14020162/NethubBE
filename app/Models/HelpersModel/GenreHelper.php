@@ -58,8 +58,9 @@ class GenreHelper extends BaseHelper
             case Genre::GENRE_TYPE_WATCHING:
                 $user_id = TokenValidator::retrieveUserId(request());
                 if ($user_id != null && isset($user_id)) {
-                    $movies = MovieHelper::getMovieWatching($user_id, $per_page, $offset);
+                    $movies = MovieHelper::getMovieWatching($user_id, $offset, $offset);
                 }
+                break;
             default:
                 $movies = MovieHelper::getMovieByGenre($genre, $offset, $limit);
                 break;

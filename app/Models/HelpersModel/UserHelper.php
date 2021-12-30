@@ -43,4 +43,19 @@ class UserHelper extends BaseHelper
         return $user;
     }
 
+    public static function checkMaxCCU($user, $movie, $deviceId){
+        $check_device = true;
+        if(WhiteListUserHelper::isVipMobile($user->mobile)){
+            $check_device = true;
+            return $check_device;
+        }
+        $checkUserPackage = UserPackageHelper::getMaxDeviceCCU($user);
+        if($checkUserPackage){
+            $group_name = $checkUserPackage->parent_pack_code;
+            $max_device = $checkUserPackage->max_device_ccu;
+            if(!is_null($max_device) && $max_device > 0)
+        }
+    }
+
+
 }
