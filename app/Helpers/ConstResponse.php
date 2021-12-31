@@ -25,6 +25,12 @@ class ConstResponse
     const KEY_GET_USER_BY_ID                            = 'get_user_by_id:';
     const KEY_GET_OTP_BY_USER                           = 'get_otp_by_user:';
     const KEY_GET_FIRST_GENRE                           = 'get_first_genre:';
+    const KEY_MAX_DEVICE_CCU                            = 'key_max_device_ccu:';
+    const KEY_MAX_DEVICE_LOGIN                          = 'key_max_device_login:';
+    const KEY_ARRAY_EVENT_TICKET_VIP                    = 'key_array_event_ticket_vip:';
+    const KEY_ARRAY_EVENT_TICKET_NORMAL                 = 'key_array_event_ticket_normal:';
+    const KEY_GET_EVENT_USER_TICKET                     = 'key_api_event_user_ticket:';
+    const KEY_GET_FIELD_GENRE_SETTING                   = 'key_get_field_genre_setting:';
     const EXPIRE_TIME_OTP                               = 5;
     const CCU_MAX_OTP                                   = 3;
 
