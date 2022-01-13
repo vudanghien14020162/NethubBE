@@ -7,6 +7,8 @@ use App\Models\HelpersModel\RelationHelper;
 class Movie extends BaseModel
 {
     protected $table = 'movies';
+    const IS_LIVE = 0;
+    const IS_MOVIE = 1;
 
     public $attributes = [
         'user_rating',

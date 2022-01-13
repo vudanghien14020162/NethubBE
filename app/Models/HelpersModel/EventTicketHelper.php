@@ -60,4 +60,16 @@ class EventTicketHelper extends BaseHelper
         }
         return $data;
     }
+
+    public static function findTicketByCode($code){
+        $cache = self::getCache();
+        $key   = ConstResponse::api_get_ticket_code . $code;
+        $data = $cache->getData($key);
+        if(empty($data)){
+            $data = EventTicket::where('code', $code)->first();
+            $cache->createData($key, $data);
+        }
+        return $data;
+    }
+
 }

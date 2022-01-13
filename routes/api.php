@@ -42,4 +42,8 @@ Route::prefix('V2')->group(function () {
     Route::get('count-not-view-notification', [NotificationController::class, 'countNotification'])->name('count-notification');
     Route::get('getRecommend/{movie_id}', [MovieController::class, 'getRecommend'])->name('get-recommend');
     Route::post('ping/avg', [PingDataController::class, 'ping'])->name('get-ping');
+    Route::group(['middleware' => ['delete_ping']], function (){
+        //@todo: Movie
+        Route::post('linkMovie/{id}', 'Api\MovieApiController@linkMovie')->name('movie-api');
+    });
 });

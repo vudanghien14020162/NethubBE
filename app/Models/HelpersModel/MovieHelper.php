@@ -4,6 +4,7 @@
 namespace App\Models\HelpersModel;
 
 
+use App\Helpers\BaseResponse;
 use App\Helpers\ConstResponse;
 use App\Models\Base\BaseDataResponse;
 use App\Models\Movie;
@@ -61,5 +62,73 @@ class MovieHelper extends BaseHelper
         return $list;
     }
 
+    public static function searchTrendingSuggest(){
+        $movies = Movie::query()
+            ->where('status', Movie::STATUS_ACTIVE)
+            ->where('deleted', Movie::NOT_DELETED)
+            ->where('live', Movie::IS_LIVE)
+            ->where('parent_id', null)
+            ->where(function ($query){
+                $query->where('movies.drm_type', '<>', '1')
+                    ->orWhere('movies.drm_type', null);
+            })
+            ->orderBy('id', 'desc')
+            ->limit(20)
+            ->get();
+        $datas = null;
+        foreach ($movies as $movie){
+            $datas[] = [
+                'id' => isset($movie->id) ? (int)$movie->id : 0,
+                'title' => isset($movie->title) ? $movie->title:'',
+                'live' => isset($movie->live) ? (int)$movie->live:'',
+                'thumbnail' => isset($movie->thumbnail) ? $movie->thumbnail : '',
+                'poster' => isset($movie->poster) ? $movie->poster : '',
+                'description' => isset($movie->description) ? $movie->description : ''
+            ];
+        }
+        return $datas;
+    }
 
+    public static function searchSuggestion($keyword){
+        $movies = Movie::query()
+            ->where('status', Movie::STATUS_ACTIVE)
+            ->where('deleted', Movie::NOT_DELETED)
+            ->where('parent_id', null)
+            ->where(function ($query){
+                $query->where('movies.drm_type', '<>', '1')
+                    ->orWhere('movies.drm_type', null);
+            })
+            ->where('title', 'like', '%' . $keyword . '%')
+            ->orderBy('id', 'desc')
+            ->limit(10)
+            ->get();
+        $datas = null;
+        foreach ($movies as $movie){
+            $datas[] = [
+                'id' => isset($movie->id) ? (int) $movie->id : 0,
+                'title' => isset($movie->title) ? $movie->title : '',
+                'live' => isset($movie->live) ? $movie->live: '',
+                'thumbnail' => isset($movie->thumbnail) ? $movie->thumbnail : '',
+                'poster' => isset($movie->poster) ? $movie->poster : '',
+                'description' => isset($movie->description) ? $movie->description : ''
+            ];
+        }
+        return $datas;
+    }
+
+    public static function getMovieByTitle($title){
+        $cache = self::getCache();
+        $key = ConstResponse::KEY_CACHE_GET_MOVIE_BY_TITLE . $title;
+        $data = $cache->getData($key);
+        if(empty($data) || is_null($data)){
+            $data = Movie::query()
+                ->where('title', 'like', '%' , $title , '%')
+                ->where('status', Movie::STATUS_ACTIVE)
+                ->where('deleted', Movie::NOT_DELETED)
+                ->first();
+            ;
+            $data = $cache->createData($key, $data);
+        }
+        return $data;
+    }
 }

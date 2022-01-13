@@ -28,4 +28,11 @@ class HistoryLoginHelper extends BaseHelper
             ->first();
         return $data;
     }
+    public static function getDeviceByUser($user_id){
+        $data = HistoryLogin::query()
+            ->where(array('user_id' => $user_id, 'deleted' => false))
+            ->orderBy('time_login', 'desc')
+            ->get();
+        return $data;
+    }
 }

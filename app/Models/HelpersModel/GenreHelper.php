@@ -7,6 +7,7 @@ namespace App\Models\HelpersModel;
 use App\Helpers\ConstResponse;
 use App\Helpers\TokenValidator;
 use App\Http\Controllers\MovieController;
+use App\Models\Base\BaseDataResponse;
 use App\Models\Genre;
 use App\Models\RelationMenuGenre;
 
@@ -70,6 +71,14 @@ class GenreHelper extends BaseHelper
         $object->movies = $movies;
         $object->banners = $banners;
         return $object;
+    }
+    public static function getListMoviesGenre($genre, $per_page, $offset){
+        $datas = [];
+        $list = self::getDataByGenreId($genre, $offset, $per_page);
+        foreach ($list as $data){
+            $datas[] = BaseDataResponse::baseMovie($data);
+        }
+        return $datas;
     }
 
 }

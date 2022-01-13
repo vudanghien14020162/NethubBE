@@ -33,6 +33,9 @@ class ConstResponse
     const KEY_GET_FIELD_GENRE_SETTING                   = 'key_get_field_genre_setting:';
     const EXPIRE_TIME_OTP                               = 5;
     const CCU_MAX_OTP                                   = 3;
+    const KEY_CACHE_GET_MOVIE_BY_TITLE                  = 'key_cache_get_movie_by_title: ';
+    const api_get_event_code                            = 'api_cached:api_get_event_code:';
+    const api_get_ticket_code                           = 'api_cached:api_get_ticket_code:';
 
     public static $message_sms_otp_nethub               = " la ma OTP xac thuc tai khoan NETHub cua Quy Khach";
     public static $message_sms_password                 = " la mat khau mac dinh dang nhap NETHub cua Quy khach";
@@ -40,4 +43,11 @@ class ConstResponse
     public static $watched_percent                      = 95;
     public static $message_login                        = "Bạn cần đăng nhập để sử dụng chức năng này.";
     public static $message_blocked_user                 = "Tài khoản này bị khóa do vi phạm chính sách bản quyền NETHub";
+    public static $error_group_max_device_user          = 15;
+    public static $error_code_no_fail                   = 1;
+    public static $error_response_code_no_login         = 7;
+    public static $api_popup_event                      = "api_cached:api_popup_event";
+    public static $api_get_event_id                     = "api_get_event_id:";
+    public static $api_check_movie_in_event             = "api_check_movie_in_event:";
+
 }
